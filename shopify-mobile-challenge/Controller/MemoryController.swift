@@ -41,14 +41,13 @@ class MemoryController: UIViewController {
         }
     }
     
+    @IBOutlet weak var winView: UIView!
     @IBOutlet weak var optionsView: UIView!
      @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var topBar: UIView!
     @IBOutlet weak var scoreView: UIView! 
     @IBOutlet weak var scoreCountLabel: UILabel!
-
-    
     
     @IBOutlet weak var resetButton: HighlighedtButton!
     @IBOutlet weak var shuffleButton: HighlighedtButton!
@@ -65,7 +64,7 @@ class MemoryController: UIViewController {
     
     var matchesToWin: Int = 10
     var possibleMatches: Int = 16
-    var copiesToMatch: Int = 3
+    var copiesToMatch: Int = 2
     
     // This is to check for the firstID and firstIndexPath
     var id: Int?
@@ -122,14 +121,29 @@ class MemoryController: UIViewController {
     }
     
     @IBAction func resetButtonPressed(_ sender: HighlighedtButton) {
+        self.restartGame()
+    }
+    
+    
+    // Restarts the game
+    // Can be called from either reset function, optionsController, or winController
+    func restartGame() {
+        // Sets the views to hidden
+        self.blurView.alpha = 0
+        self.winView.alpha = 0
+        self.optionsView.alpha = 0
         
+        //
         self.correct = 0
+        
+        // Removes all the cards and reloads the memory to have a remove animation
         UIView.transition(with: self.memoryCollectionView, duration: 0.3, options: [.transitionCrossDissolve], animations: {
                 self.memoryCards.removeAll()
                    DispatchQueue.main.async {
                          self.memoryCollectionView.reloadData()
                      }
         }, completion: { (success) in
+            // Reppears with an animation in with setuo game
             UIView.transition(with: self.memoryCollectionView, duration: 0.3, options: [.transitionCrossDissolve], animations: {
                 self.setupGame()
             })
@@ -150,25 +164,41 @@ class MemoryController: UIViewController {
         }
         
         self.memoryCards.shuffle()
+        
         guard let visibleCells = self.memoryCollectionView?.visibleCells as? [MemoryCell] else {return}
-        for (index, cell) in visibleCells.enumerated() {
+        for cell in visibleCells {
+            guard let item = self.memoryCollectionView.indexPath(for: cell)?.item else {continue}
             UIView.transition(with: cell, duration: 0.5, options: [.transitionFlipFromTop, .transitionFlipFromBottom], animations: {
-                if(self.memoryCards[index].state == .hidden) {
+                if(self.memoryCards[item].state == .hidden) {
                     cell.setHiddenImage()
-                } else {
-                    cell.setRevealedImage(url: self.memoryCards[index].imageURL)
+                } else if (self.memoryCards[item].state == .revealed ){
+                    cell.setRevealedImage(url: self.memoryCards[item].imageURL)
                 }
            })
         }
+
     }
     
+    
     @IBAction func optionsButtonPressed(_ sender: UIButton) {
+        guard let optionsVC = self.children[0] as? OptionsController else {return}
+        optionsVC.copiesToMatch = self.copiesToMatch
+        optionsVC.matchesToWin = self.matchesToWin
+        optionsVC.possibleMatches = self.possibleMatches
+                   
         UIView.animate(withDuration: 0.1, animations: {
             self.blurView.alpha = 1
         })
         UIView.animate(withDuration: 0.2, animations: {
             self.optionsView.alpha = 1
         })
+    }
+    
+    func optionsDonePressed(possibleMatches: Int, copiesToMatch: Int, matchesToWin: Int) {
+        self.copiesToMatch = copiesToMatch
+        self.possibleMatches = possibleMatches
+        self.matchesToWin = matchesToWin
+        restartGame()
     }
     
     func closeOptionView() {
@@ -179,6 +209,22 @@ class MemoryController: UIViewController {
             self.optionsView.alpha = 0
         })
     }
+    
+    
+    // Finish the game and sending the card to the WinViewController
+    func winGame(cards: Int) {
+            guard let winVC = self.children[1] as? WinController else {return}
+            winVC.cards = cards
+            winVC.setWinImage()
+        
+            UIView.animate(withDuration: 0.1, animations: {
+                self.blurView.alpha = 1
+            })
+            UIView.animate(withDuration: 0.2, animations: {
+                self.winView.alpha = 1
+            })
+        }
+       
 }
 
 /*
@@ -187,8 +233,6 @@ class MemoryController: UIViewController {
  
 */
 extension MemoryController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return memoryCards.count
@@ -284,14 +328,9 @@ extension MemoryController: UICollectionViewDelegate, UICollectionViewDataSource
         self.id = nil
         self.indexPathArray = []
        if(self.correct == self.matchesToWin) {
-           
+            self.winGame(cards: self.matchesToWin * self.copiesToMatch)
        }
     }
-    
-    func addCopy() {
-        
-    }
-    
     
     /*
         Set Memory Cell to either a playing card or revealed state!
@@ -355,12 +394,22 @@ extension MemoryController: UICollectionViewDelegate, UICollectionViewDataSource
 
 extension MemoryController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width / 10, height: collectionView.frame.size.width / 10)
+        let (widthDiv, heightDiv) = frameDivisor()
+        return CGSize(width: collectionView.frame.size.width / widthDiv, height: collectionView.frame.size.width / heightDiv)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
-
+    
+    func frameDivisor() -> (width: CGFloat, height: CGFloat) {
+        var numberOfCards = self.possibleMatches * self.copiesToMatch
+        if(numberOfCards < 24) {
+           numberOfCards = 24
+        }
+        let width = 6 + numberOfCards/36
+        let height = 3 + numberOfCards/16
+        return (CGFloat(numberOfCards/width), CGFloat(numberOfCards/height))
+    }
 }
 

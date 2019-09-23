@@ -16,9 +16,10 @@
 		1C1966C4232EB4B100226745 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1966C2232EB4B100226745 /* Main.storyboard */; };
 		1C1966C6232EB4B300226745 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C1966C5232EB4B300226745 /* Assets.xcassets */; };
 		1C1966C9232EB4B300226745 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C1966C7232EB4B300226745 /* LaunchScreen.storyboard */; };
-		1C1966D4232EB4B400226745 /* shopify_mobile_challengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1966D3232EB4B400226745 /* shopify_mobile_challengeTests.swift */; };
-		1C1966DF232EB4B400226745 /* shopify_mobile_challengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1966DE232EB4B400226745 /* shopify_mobile_challengeUITests.swift */; };
 		1C6851D02333E20300CD37A1 /* MemoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6851CF2333E20300CD37A1 /* MemoryCard.swift */; };
+		1CD3487823385B9F007F5E22 /* GifExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3487723385B9F007F5E22 /* GifExtension.swift */; };
+		1CD3487A23386C52007F5E22 /* WinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3487923386C52007F5E22 /* WinController.swift */; };
+		1CD3487F233875D0007F5E22 /* dancing_totoro.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1CD3487E23387410007F5E22 /* dancing_totoro.gif */; };
 		1CEFC0622330B92400D2AD47 /* MemoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFC0602330B92400D2AD47 /* MemoryCell.swift */; };
 		1CEFC0632330B92400D2AD47 /* MemoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CEFC0612330B92400D2AD47 /* MemoryCell.xib */; };
 /* End PBXBuildFile section */
@@ -53,12 +54,11 @@
 		1C1966C8232EB4B300226745 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C1966CA232EB4B300226745 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C1966CF232EB4B400226745 /* shopify-mobile-challengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "shopify-mobile-challengeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1C1966D3232EB4B400226745 /* shopify_mobile_challengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shopify_mobile_challengeTests.swift; sourceTree = "<group>"; };
-		1C1966D5232EB4B400226745 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C1966DA232EB4B400226745 /* shopify-mobile-challengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "shopify-mobile-challengeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1C1966DE232EB4B400226745 /* shopify_mobile_challengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shopify_mobile_challengeUITests.swift; sourceTree = "<group>"; };
-		1C1966E0232EB4B400226745 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C6851CF2333E20300CD37A1 /* MemoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCard.swift; sourceTree = "<group>"; };
+		1CD3487723385B9F007F5E22 /* GifExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifExtension.swift; sourceTree = "<group>"; };
+		1CD3487923386C52007F5E22 /* WinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinController.swift; sourceTree = "<group>"; };
+		1CD3487E23387410007F5E22 /* dancing_totoro.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = dancing_totoro.gif; sourceTree = "<group>"; };
 		1CEFC0602330B92400D2AD47 /* MemoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryCell.swift; sourceTree = "<group>"; };
 		1CEFC0612330B92400D2AD47 /* MemoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemoryCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,8 +101,6 @@
 			isa = PBXGroup;
 			children = (
 				1C1966BD232EB4B100226745 /* shopify-mobile-challenge */,
-				1C1966D2232EB4B400226745 /* shopify-mobile-challengeTests */,
-				1C1966DD232EB4B400226745 /* shopify-mobile-challengeUITests */,
 				1C1966BC232EB4B100226745 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -120,33 +118,15 @@
 		1C1966BD232EB4B100226745 /* shopify-mobile-challenge */ = {
 			isa = PBXGroup;
 			children = (
+				1CD3487D23387408007F5E22 /* Resources */,
 				1C1966EE232EB79600226745 /* Controller */,
 				1C1966ED232EB78E00226745 /* Model */,
 				1C1966EC232EB78B00226745 /* View */,
 				1C1966BE232EB4B100226745 /* AppDelegate.swift */,
-				1C1966C5232EB4B300226745 /* Assets.xcassets */,
 				1C1966C7232EB4B300226745 /* LaunchScreen.storyboard */,
 				1C1966CA232EB4B300226745 /* Info.plist */,
 			);
 			path = "shopify-mobile-challenge";
-			sourceTree = "<group>";
-		};
-		1C1966D2232EB4B400226745 /* shopify-mobile-challengeTests */ = {
-			isa = PBXGroup;
-			children = (
-				1C1966D3232EB4B400226745 /* shopify_mobile_challengeTests.swift */,
-				1C1966D5232EB4B400226745 /* Info.plist */,
-			);
-			path = "shopify-mobile-challengeTests";
-			sourceTree = "<group>";
-		};
-		1C1966DD232EB4B400226745 /* shopify-mobile-challengeUITests */ = {
-			isa = PBXGroup;
-			children = (
-				1C1966DE232EB4B400226745 /* shopify_mobile_challengeUITests.swift */,
-				1C1966E0232EB4B400226745 /* Info.plist */,
-			);
-			path = "shopify-mobile-challengeUITests";
 			sourceTree = "<group>";
 		};
 		1C1966EC232EB78B00226745 /* View */ = {
@@ -164,6 +144,7 @@
 				1C0D2A4A2330B88B00E9F1E0 /* MemoryCell */,
 				1C6851CF2333E20300CD37A1 /* MemoryCard.swift */,
 				1C17569F23381D880007D47B /* HighlightButton.swift */,
+				1CD3487723385B9F007F5E22 /* GifExtension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -173,6 +154,7 @@
 			children = (
 				1C1966C0232EB4B100226745 /* MemoryController.swift */,
 				1C1756A123383AAB0007D47B /* OptionsController.swift */,
+				1CD3487923386C52007F5E22 /* WinController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -184,6 +166,15 @@
 				1C0D2A472330950800E9F1E0 /* DataFetcher.swift */,
 			);
 			path = "Shopify API";
+			sourceTree = "<group>";
+		};
+		1CD3487D23387408007F5E22 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1CD3487E23387410007F5E22 /* dancing_totoro.gif */,
+				1C1966C5232EB4B300226745 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +283,7 @@
 			files = (
 				1CEFC0632330B92400D2AD47 /* MemoryCell.xib in Resources */,
 				1C1966C9232EB4B300226745 /* LaunchScreen.storyboard in Resources */,
+				1CD3487F233875D0007F5E22 /* dancing_totoro.gif in Resources */,
 				1C1966C6232EB4B300226745 /* Assets.xcassets in Resources */,
 				1C1966C4232EB4B100226745 /* Main.storyboard in Resources */,
 			);
@@ -319,12 +311,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C0D2A482330950800E9F1E0 /* DataFetcher.swift in Sources */,
+				1CD3487823385B9F007F5E22 /* GifExtension.swift in Sources */,
 				1C0D2A462330949100E9F1E0 /* Product.swift in Sources */,
 				1C1756A223383AAB0007D47B /* OptionsController.swift in Sources */,
 				1C1756A023381D880007D47B /* HighlightButton.swift in Sources */,
 				1C6851D02333E20300CD37A1 /* MemoryCard.swift in Sources */,
 				1C1966C1232EB4B100226745 /* MemoryController.swift in Sources */,
 				1C1966BF232EB4B100226745 /* AppDelegate.swift in Sources */,
+				1CD3487A23386C52007F5E22 /* WinController.swift in Sources */,
 				1CEFC0622330B92400D2AD47 /* MemoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,7 +327,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C1966D4232EB4B400226745 /* shopify_mobile_challengeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,7 +334,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C1966DF232EB4B400226745 /* shopify_mobile_challengeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
