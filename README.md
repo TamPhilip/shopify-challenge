@@ -7,6 +7,6 @@ The challenge was to create a Memory game using their one of their API endpoints
 
 Here a few screenshots of the page itself:
 
-<img align="center" width="100" src="/noMatches.png">
-<img src="/someMatches.png" align="center" width="100">
-<img src="/winGame.png" align="center" width="100">
+<img align="center" width="200" src="/noMatches.png">
+<img src="/someMatches.png" align="center" width="200">
+<img src="/winGame.png" align="center" width="200">
