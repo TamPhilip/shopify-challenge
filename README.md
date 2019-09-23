@@ -3,5 +3,4 @@ Shopify iOS Challenge - Winter 2019
 
 Welcome this is my attempt at Shopify's 2019 Winter - Challenge
 
-
-![No Matches](/noMatches.png | width=100)
+<img src="/noMatches,png" width="40%">
