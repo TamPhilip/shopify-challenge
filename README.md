@@ -9,5 +9,4 @@ Here a few screenshots of the page itself:
 
 | No Matches  | Some Matches | Win | Options |
 | ------------- | ------------- | ------------- | ------------- |
-| 
-<img align="center" width="200" src="/noMatches.png">  | <img src="/someMatches.png" align="center" width="200">  | <img src="/winGame.png" align="center" width="200">| <img src="/Options.png" align="center" width="200">|
+| <img align="center" width="200" src="/noMatches.png">  | <img src="/someMatches.png" align="center" width="200">  | <img src="/winGame.png" align="center" width="200">| <img src="/Options.png" align="center" width="200">|
