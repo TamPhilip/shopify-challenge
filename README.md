@@ -7,18 +7,7 @@ The challenge was to create a Memory game using their one of their API endpoints
 
 Here a few screenshots of the page itself:
 
-No matches:
-
-<img align="center" width="200" src="/noMatches.png">
-
-Some matches:
-
-<img src="/someMatches.png" align="center" width="200">
-
-Win:
-
-<img src="/winGame.png" align="center" width="200">
-
-Options:
-
-<img src="/Options.png" align="center" width="200">
+| No Matches  | Some Matches | Win | Options |
+| ------------- | ------------- | ------------- | ------------- |
+| 
+<img align="center" width="200" src="/noMatches.png">  | <img src="/someMatches.png" align="center" width="200">  | <img src="/winGame.png" align="center" width="200">| <img src="/Options.png" align="center" width="200">|
