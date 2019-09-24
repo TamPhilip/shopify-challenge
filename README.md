@@ -13,5 +13,4 @@ Here a few screenshots of the page itself:
 
 External resources/frameworks used:
 
-I used a gif extension to be able to display a gif inside an ImageView
-Source: https://github.com/kiritmodi2702/GIF-Swift/blob/master/GIF-Swift/iOSDevCenters%2BGIF.swift
+I used a gif extension to be able to display a gif inside an ImageView source can be found at https://github.com/kiritmodi2702/GIF-Swift/blob/master/GIF-Swift/iOSDevCenters%2BGIF.swift
